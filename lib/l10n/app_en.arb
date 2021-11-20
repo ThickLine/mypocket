@@ -1,0 +1,39 @@
+{
+    "helloWorld": "Hello World!",
+    "settingsTitle": "Settings",
+    "darkLightTitle": "Light/Dark Theme",
+    "isSecure": "Use biometrics",
+    "back": "Back",
+    "settingViewTitle": "Setting View",
+    "uploadViewTitle": "Upload File",
+    "namePlacholder": "Name",
+    "loginTitle": "Enter",
+    "itemViewTitle": "File View",
+    "deleteTitle":"Delete Item",
+    "deleteQuestion":  "Are you sure you want to delete this file?",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "languageSwitchTitle":"Change language",
+    "languageEN": "English",
+    "languageLV": "Latviešu",
+    "localizedReasonTitle":"Please authenticate to access content",
+    "versionTitle": "This app is running version",
+    "authTitle": "Scan your fingerprint (or face or whatever) to authenticate",
+    "deleteAllFilesTitle":"Wipe all",
+    "deleteAllFilesQuestion":  "This is irreversible! Are you sure?",
+    "fileUnsuccessfulUploadMessage": "Couldn't save the file",
+    "fileUnsuccessfulUploadDescription": "Probably permission was denied"
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
