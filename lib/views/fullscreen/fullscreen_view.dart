@@ -28,7 +28,9 @@ class FullScreenView extends StatelessWidget {
     );
   }
 
-  Widget getViewForType(String type) {
+  Widget getViewForType(
+    String type,
+  ) {
     switch (type) {
       case ".pdf":
         return PdfViewer.openFile(
@@ -36,7 +38,7 @@ class FullScreenView extends StatelessWidget {
         );
 
       default:
-        return Image.file(File(file!.path ?? ""));
+        return Image.file(File(file!.path!));
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:my_pocket/app/app.logger.dart';
 import 'package:my_pocket/app/app.router.dart';
 import 'package:my_pocket/services/auth.service.dart';
 import 'package:my_pocket/services/file.service.dart';
+import 'package:my_pocket/services/file_helper.service.dart';
 import 'package:my_pocket/services/translation.service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -14,6 +15,7 @@ class StartUpViewModel extends BaseViewModel {
   final _fileService = locator<FileService>();
   final _authService = locator<AuthService>();
   final _translationService = locator<TranslationService>();
+  final _fileHelperService = locator<FileHelperService>();
 
   bool _delay = true;
 
@@ -21,7 +23,7 @@ class StartUpViewModel extends BaseViewModel {
 
   Future<void> init() async {
     await _fileService.initItem();
-    // Set saved locale
+    await _fileHelperService.getDirectory();
     await _translationService.fetchLocale();
     await onAuth();
 

@@ -26,8 +26,8 @@ class ItemViewModel extends BaseViewModel {
   }
 
 // Open file natively
-  Future<void> openFile(String path) async {
-    await OpenFile.open(path);
+  Future<void> openFile() async {
+    await OpenFile.open(file!.path);
   }
 
 // delete item localy

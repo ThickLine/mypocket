@@ -31,13 +31,13 @@ class ScreenView extends StatelessWidget {
     switch (type) {
       case ".pdf":
         return PdfWidget(
-          file: file,
+          path: model.file?.path,
           onPressed: model.onFileUpload,
         );
 
       default:
         return ImageWidget(
-          file: file,
+          path: model.file?.path,
           onPressed: model.onFileUpload,
         );
     }

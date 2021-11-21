@@ -11,7 +11,8 @@ class FileModel with _$FileModel {
       {@HiveField(0) String? uid,
       @HiveField(1) String? name,
       @HiveField(2) String? path,
-      @HiveField(3) String? ext}) = _FileModel;
+      @HiveField(3) String? fileName,
+      @HiveField(4) String? ext}) = _FileModel;
 
   factory FileModel.fromJson(Map<String, dynamic> json) =>
       _$FileModelFromJson(json);

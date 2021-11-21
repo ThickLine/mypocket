@@ -94,12 +94,12 @@ class UploadView extends StatelessWidget with $UploadView {
     switch (type) {
       case ".pdf":
         return PdfWidget(
-          file: model.file,
+          path: model.file?.path,
         );
 
       default:
         return ImageWidget(
-          file: model.file,
+          path: model.file?.path,
         );
     }
   }

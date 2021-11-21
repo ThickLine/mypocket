@@ -5,7 +5,6 @@ import 'package:my_pocket/layout/home_layout.dart';
 import 'package:my_pocket/locale/app_localizations.g.dart';
 import 'package:my_pocket/views/main/main_viewmodel.dart';
 import 'package:my_pocket/views/screen/screen_view.dart';
-import 'package:my_pocket/views/setting/setting_view.dart';
 import 'package:my_pocket/widgets/main_card_widget.dart';
 
 import 'package:stacked/stacked.dart';

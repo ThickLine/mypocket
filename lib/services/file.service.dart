@@ -31,7 +31,8 @@ class FileService {
     Box<MyPocketModel> box = Boxes.getFile();
     _pocket = await box.get("myFile") ??
         MyPocketModel(files: [], setting: SettingModel());
-    await checkForEmptyOnes();
+
+    await getFilesReady();
   }
 
   Future<void> updateSettings(SettingModel setting) async {
@@ -39,9 +40,13 @@ class FileService {
     await saveToHive();
   }
 
-// Remove empty items from list
-  Future<void> checkForEmptyOnes() async {
+// Remove empty items from list and recreate path
+  Future<void> getFilesReady() async {
     _pocket.files!.removeWhere((FileModel file) => file.ext == null);
+    _pocket.files!.asMap().forEach((int index, FileModel file) {
+      pocket.files![index] = pocket.files![index]
+          .copyWith(path: _fileHelperService.getPathFromName(file.fileName!));
+    });
   }
 
   Future<bool> saveFile(FileModel data) async {
@@ -88,22 +93,31 @@ class FileService {
       PlatformFile singleUploadFile = uploudfile!.files.single;
 
       final String extension = p.extension(singleUploadFile.path!);
-      File savePath = File("${directory.path}/${singleUploadFile.name}");
+      // New file name
+      final String fileName = DateTime.now().millisecondsSinceEpoch.toString() +
+          singleUploadFile.name;
+
+      File savePath = File(_fileHelperService.getPathFromName(fileName)!);
+      // Temp location
       final File fileToSave = File(singleUploadFile.path!);
-
+      // Move to new location
       await _fileHelperService.moveFile(fileToSave, savePath.path);
-
-      file = FileModel(uid: uuid.v1(), path: savePath.path, ext: extension);
+      // Save file
+      file = FileModel(
+          uid: uuid.v1(),
+          path: savePath.path,
+          fileName: fileName,
+          ext: extension);
 
       return file;
     } on StackTrace catch (e) {
       log.e(e);
-      // _snackBarService.showCustomSnackBar(
-      //     variant: SnackbarType.ERROR,
-      //     message: t.fileUnsuccessfulUploadMessage,
-      //     title: t.fileUnsuccessfulUploadDescription,
-      //     duration: const Duration(seconds: 2));
-      throw Exception('Things went wrong');
+      _snackBarService.showCustomSnackBar(
+          variant: SnackbarType.ERROR,
+          message: t.fileUnsuccessfulUploadMessage,
+          title: t.fileUnsuccessfulUploadDescription,
+          duration: const Duration(seconds: 2));
+      throw Exception('Things went wrong $e');
     }
   }
 

@@ -65,31 +65,6 @@ class AuthService {
     _availableBiometrics = availableBiometrics;
   }
 
-  // Future<void> authenticateWithBiometrics() async {
-  //   bool authenticated = false;
-  //   try {
-  //     _isAuthenticating = true;
-  //     _authorized = 'Authenticating';
-  //     authenticated = await auth.authenticate(
-  //         localizedReason:
-  //             'Scan your fingerprint (or face or whatever) to authenticate',
-  //         useErrorDialogs: true,
-  //         stickyAuth: true,
-  //         biometricOnly: true);
-  //     _isAuthenticating = false;
-  //     log.wtf("log");
-  //     _authorized = 'Authenticating';
-  //   } on PlatformException catch (e) {
-  //     log.wtf(e);
-  //     _isAuthenticating = false;
-  //     _authorized = "Error - ${e.message}";
-  //     return;
-  //   }
-
-  //   final String message = authenticated ? 'Authorized' : 'Not Authorized';
-  //   _authorized = message;
-  // }
-
   void cancelAuthentication() async {
     await auth.stopAuthentication();
     _isAuthenticating = false;

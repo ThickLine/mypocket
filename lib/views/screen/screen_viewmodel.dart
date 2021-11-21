@@ -2,7 +2,6 @@ import 'package:my_pocket/app/app.locator.dart';
 import 'package:my_pocket/app/app.logger.dart';
 import 'package:my_pocket/app/app.router.dart';
 import 'package:my_pocket/models/file/file_model.dart';
-
 import 'package:my_pocket/models/my_pocket_model/my_pocket_model.dart';
 import 'package:my_pocket/services/file.service.dart';
 import 'package:stacked/stacked.dart';

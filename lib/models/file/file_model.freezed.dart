@@ -25,11 +25,13 @@ class _$FileModelTearOff {
       {@HiveField(0) String? uid,
       @HiveField(1) String? name,
       @HiveField(2) String? path,
-      @HiveField(3) String? ext}) {
+      @HiveField(3) String? fileName,
+      @HiveField(4) String? ext}) {
     return _FileModel(
       uid: uid,
       name: name,
       path: path,
+      fileName: fileName,
       ext: ext,
     );
   }
@@ -51,6 +53,8 @@ mixin _$FileModel {
   @HiveField(2)
   String? get path => throw _privateConstructorUsedError;
   @HiveField(3)
+  String? get fileName => throw _privateConstructorUsedError;
+  @HiveField(4)
   String? get ext => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -67,7 +71,8 @@ abstract class $FileModelCopyWith<$Res> {
       {@HiveField(0) String? uid,
       @HiveField(1) String? name,
       @HiveField(2) String? path,
-      @HiveField(3) String? ext});
+      @HiveField(3) String? fileName,
+      @HiveField(4) String? ext});
 }
 
 /// @nodoc
@@ -83,6 +88,7 @@ class _$FileModelCopyWithImpl<$Res> implements $FileModelCopyWith<$Res> {
     Object? uid = freezed,
     Object? name = freezed,
     Object? path = freezed,
+    Object? fileName = freezed,
     Object? ext = freezed,
   }) {
     return _then(_value.copyWith(
@@ -97,6 +103,10 @@ class _$FileModelCopyWithImpl<$Res> implements $FileModelCopyWith<$Res> {
       path: path == freezed
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileName: fileName == freezed
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
               as String?,
       ext: ext == freezed
           ? _value.ext
@@ -116,7 +126,8 @@ abstract class _$FileModelCopyWith<$Res> implements $FileModelCopyWith<$Res> {
       {@HiveField(0) String? uid,
       @HiveField(1) String? name,
       @HiveField(2) String? path,
-      @HiveField(3) String? ext});
+      @HiveField(3) String? fileName,
+      @HiveField(4) String? ext});
 }
 
 /// @nodoc
@@ -133,6 +144,7 @@ class __$FileModelCopyWithImpl<$Res> extends _$FileModelCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? name = freezed,
     Object? path = freezed,
+    Object? fileName = freezed,
     Object? ext = freezed,
   }) {
     return _then(_FileModel(
@@ -147,6 +159,10 @@ class __$FileModelCopyWithImpl<$Res> extends _$FileModelCopyWithImpl<$Res>
       path: path == freezed
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileName: fileName == freezed
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
               as String?,
       ext: ext == freezed
           ? _value.ext
@@ -163,7 +179,8 @@ class _$_FileModel implements _FileModel {
       {@HiveField(0) this.uid,
       @HiveField(1) this.name,
       @HiveField(2) this.path,
-      @HiveField(3) this.ext});
+      @HiveField(3) this.fileName,
+      @HiveField(4) this.ext});
 
   factory _$_FileModel.fromJson(Map<String, dynamic> json) =>
       _$$_FileModelFromJson(json);
@@ -179,11 +196,14 @@ class _$_FileModel implements _FileModel {
   final String? path;
   @override
   @HiveField(3)
+  final String? fileName;
+  @override
+  @HiveField(4)
   final String? ext;
 
   @override
   String toString() {
-    return 'FileModel(uid: $uid, name: $name, path: $path, ext: $ext)';
+    return 'FileModel(uid: $uid, name: $name, path: $path, fileName: $fileName, ext: $ext)';
   }
 
   @override
@@ -194,11 +214,13 @@ class _$_FileModel implements _FileModel {
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.path, path) || other.path == path) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
             (identical(other.ext, ext) || other.ext == ext));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uid, name, path, ext);
+  int get hashCode => Object.hash(runtimeType, uid, name, path, fileName, ext);
 
   @JsonKey(ignore: true)
   @override
@@ -216,7 +238,8 @@ abstract class _FileModel implements FileModel {
       {@HiveField(0) String? uid,
       @HiveField(1) String? name,
       @HiveField(2) String? path,
-      @HiveField(3) String? ext}) = _$_FileModel;
+      @HiveField(3) String? fileName,
+      @HiveField(4) String? ext}) = _$_FileModel;
 
   factory _FileModel.fromJson(Map<String, dynamic> json) =
       _$_FileModel.fromJson;
@@ -232,6 +255,9 @@ abstract class _FileModel implements FileModel {
   String? get path;
   @override
   @HiveField(3)
+  String? get fileName;
+  @override
+  @HiveField(4)
   String? get ext;
   @override
   @JsonKey(ignore: true)

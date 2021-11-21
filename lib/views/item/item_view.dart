@@ -7,7 +7,6 @@ import 'package:my_pocket/views/item/item_viewmodel.dart';
 import 'package:my_pocket/widgets/action_button_widget.dart';
 import 'package:my_pocket/widgets/views/image_widget.dart';
 import 'package:my_pocket/widgets/views/pdf_widget.dart';
-
 import 'package:stacked/stacked.dart';
 
 class ItemView extends StatelessWidget {
@@ -39,7 +38,7 @@ class ItemView extends StatelessWidget {
                         onPressed: model.onDelete),
                     ActionButtonWidget(
                       type: ActionButtonType.OPEN,
-                      onPressed: () => model.openFile(model.file!.path!),
+                      onPressed: () => model.openFile(),
                     ),
                   ],
                 ))
@@ -54,13 +53,13 @@ class ItemView extends StatelessWidget {
     switch (type) {
       case ".pdf":
         return PdfWidget(
-          file: file,
+          path: model.file?.path,
           onPressed: null,
         );
 
       default:
         return ImageWidget(
-          file: file,
+          path: model.file?.path,
           onPressed: null,
         );
     }

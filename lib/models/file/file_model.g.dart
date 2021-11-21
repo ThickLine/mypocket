@@ -20,14 +20,15 @@ class FileAdapter extends TypeAdapter<FileModel> {
       uid: fields[0] as String?,
       name: fields[1] as String?,
       path: fields[2] as String?,
-      ext: fields[3] as String?,
+      fileName: fields[3] as String?,
+      ext: fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, FileModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.uid)
       ..writeByte(1)
@@ -35,6 +36,8 @@ class FileAdapter extends TypeAdapter<FileModel> {
       ..writeByte(2)
       ..write(obj.path)
       ..writeByte(3)
+      ..write(obj.fileName)
+      ..writeByte(4)
       ..write(obj.ext);
   }
 
@@ -57,6 +60,7 @@ _$_FileModel _$$_FileModelFromJson(Map<String, dynamic> json) => _$_FileModel(
       uid: json['uid'] as String?,
       name: json['name'] as String?,
       path: json['path'] as String?,
+      fileName: json['fileName'] as String?,
       ext: json['ext'] as String?,
     );
 
@@ -65,5 +69,6 @@ Map<String, dynamic> _$$_FileModelToJson(_$_FileModel instance) =>
       'uid': instance.uid,
       'name': instance.name,
       'path': instance.path,
+      'fileName': instance.fileName,
       'ext': instance.ext,
     };

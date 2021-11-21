@@ -4,7 +4,6 @@ import 'package:my_pocket/app/app.locator.dart';
 import 'package:my_pocket/app/app.logger.dart';
 import 'package:my_pocket/core/enum/systemwide_enums.dart' as enums;
 import 'package:my_pocket/services/translation.service.dart';
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -14,10 +13,14 @@ class FileHelperService {
   final _snackBarService = locator<SnackbarService>();
   final _translationService = locator<TranslationService>();
 
-  Future<String> getApplicationDocumentsDirectoryPath() async {
-    final directory = await getApplicationDocumentsDirectory();
+  Directory? _directory;
 
-    return directory.path;
+  Directory? get directory => _directory;
+
+  Future<Directory?> getDirectory() async {
+    return _directory = Platform.isAndroid
+        ? await getExternalStorageDirectory()
+        : await getApplicationDocumentsDirectory();
   }
 
   Future<bool> requestPermission(Permission permission) async {
@@ -32,11 +35,9 @@ class FileHelperService {
     return false;
   }
 
-  Future<File> getFileFromUrl(String url) async {
-    final dir = await getApplicationDocumentsDirectoryPath();
-    final file = File('/$dir/${basename(url)}');
-
-    return file;
+  String? getPathFromName(String name) {
+    final file = File("${directory!.path}/$name");
+    return file.path;
   }
 
   Future<FilePickerResult>? selectSingleFile(
