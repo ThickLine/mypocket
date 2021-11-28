@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_pocket/core/shared/styles.dart';
-
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:my_pocket/layout/home_layout.dart';
 import 'package:my_pocket/locale/app_localizations.g.dart';
 import 'package:my_pocket/views/main/main_viewmodel.dart';
@@ -35,28 +35,46 @@ class MainView extends StatelessWidget {
             child: HomeLayout(
           onPressed: model.onFileUpload,
           toolbar: Text(model.date, style: ktsMediumGreyLabelText),
-          child: Column(
+          child: Stack(
             children: [
-              Expanded(
-                child: PageView(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  controller: _controller,
-                  children: model.pocket!.files != null
-                      ? model.pocket!.files!
-                          .map((e) => ScreenView(file: e))
-                          .toList()
-                      : [
-                          MainCardWidget(
-                            onPressed: model.onFileUpload,
-                            child: const Icon(
-                              Icons.picture_as_pdf_outlined,
-                              size: 80,
-                            ),
-                          )
-                        ],
-                ),
+              PageView(
+                onPageChanged: model.setIndex,
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                controller: _controller,
+                children: model.pocket!.files != null
+                    ? model.pocket!.files!
+                        .map((e) => ScreenView(file: e))
+                        .toList()
+                    : [
+                        MainCardWidget(
+                          onPressed: model.onFileUpload,
+                          child: const Icon(
+                            Icons.picture_as_pdf_outlined,
+                            size: 80,
+                          ),
+                        )
+                      ],
               ),
+              Positioned(
+                  bottom: 0.0,
+                  left: 0.0,
+                  right: 0.0,
+                  child: model.pocket!.files!.length > 1
+                      ? DotsIndicator(
+                          dotsCount: model.pocket!.files!.length,
+                          position: model.currentIndex.toDouble(),
+                          decorator: DotsDecorator(
+                            color: kcPlaceholderColor, // Inactive color
+                            activeColor: Theme.of(context).indicatorColor,
+                            size: const Size.square(9.0),
+                            activeSize: const Size(18.0, 9.0),
+                            shape: const Border(),
+                            activeShape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0)),
+                          ),
+                        )
+                      : Container())
             ],
           ),
         )),

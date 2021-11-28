@@ -8,35 +8,46 @@ class MainButtonWidget extends StatelessWidget {
   final ButtonType? type;
   final VoidCallback? onPressed;
   final String? text;
+  final double width;
   final Widget? child;
 
   MainButtonWidget(
-      {this.type = ButtonType.PRIMARY, this.onPressed, this.text, this.child});
+      {this.type = ButtonType.PRIMARY,
+      this.onPressed,
+      this.text,
+      this.child,
+      this.width = double.infinity});
 
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       child: InkWell(
         onTap: this.onPressed,
-        child: Container(
-          width: double.infinity,
-          height: kScreenHeightPercentage(context) * 0.5,
-          decoration: BoxDecoration(
-            color: getButtonColor(type!),
-            borderRadius: BorderRadius.circular(8.0),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(169, 176, 185, 0.42),
-                spreadRadius: 0,
-                blurRadius: 8.0,
-                offset: Offset(0, 2),
-              )
-            ],
-          ),
-          child: Center(
-            child:
-                text != null ? Text(text!, style: ktsButtonWhiteText) : child,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: width,
+              height: kScreenHeightPercentage(context) * 0.3,
+              decoration: BoxDecoration(
+                color: getButtonColor(type!),
+                borderRadius: BorderRadius.circular(8.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).shadowColor,
+                    blurRadius: 1,
+                    offset: Offset(2, 3),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: text != null
+                    ? Text(text!, style: ktsButtonWhiteText)
+                    : child,
+              ),
+            ),
+          ],
         ),
       ),
     );

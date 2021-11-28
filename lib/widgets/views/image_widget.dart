@@ -6,8 +6,11 @@ import 'package:my_pocket/widgets/main_card_widget.dart';
 
 class ImageWidget extends StatelessWidget {
   final String? path;
+  final BoxFit fit;
   final void Function()? onPressed;
-  const ImageWidget({Key? key, this.path, this.onPressed}) : super(key: key);
+  const ImageWidget(
+      {Key? key, this.path, this.onPressed, this.fit = BoxFit.cover})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +18,9 @@ class ImageWidget extends StatelessWidget {
         ? AnimatedContainer(
             duration: Duration(milliseconds: 300),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(8.0),
               image: DecorationImage(
-                fit: BoxFit.cover,
+                fit: fit,
                 image: FileImage(File(path ?? "")),
               ),
             ),

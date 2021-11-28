@@ -237,6 +237,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Probably permission was denied'**
   String get fileUnsuccessfulUploadDescription;
+
+  /// No description provided for @snackbarInfoItemTapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you want to open the file?'**
+  String get snackbarInfoItemTapTitle;
+
+  /// No description provided for @snackbarInfoItemTapDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Double-tap to see file in a full preview'**
+  String get snackbarInfoItemTapDescription;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

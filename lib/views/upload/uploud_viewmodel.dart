@@ -14,23 +14,45 @@ class UploadViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
 
   FileModel _file = FileModel();
+  String _icon = "pdf";
+  List<String> _iconList = ["pdf", "qr", "image"];
 
   FileModel get file => _file;
   MyPocketModel get pocket => _fileService.pocket;
+  dynamic get iconList => _iconList;
+  String get icon => _icon;
 
   @override
   void setFormStatus() {}
 
+  Future<void> init() async {
+    setBusy(true);
+    Future.delayed(const Duration(seconds: 1), () => setBusy(false));
+    return cycleIcon();
+  }
+
+// On file upload tap
   Future<void> uploadFile() async {
     _file = await _fileService.addFile();
     notifyListeners();
   }
 
-  Future<void> init() async {
-    setBusy(true);
-    Future.delayed(const Duration(seconds: 1), () => setBusy(false));
+// Shuffles icons on empty upload card
+  void cycleIcon() {
+    var future = Future(() {});
+    for (int i = 0; i < 100; i++) {
+      iconList.forEach((String s) {
+        future = future.then((_) {
+          return Future.delayed(Duration(seconds: 2), () {
+            _icon = s;
+            notifyListeners();
+          });
+        });
+      });
+    }
   }
 
+// On aproved file save
   Future<void> onAddFile() async {
     if (nameValue != null) _file = file.copyWith(name: nameValue);
     if (file.path == null) return;
@@ -39,11 +61,13 @@ class UploadViewModel extends FormViewModel {
     if (res == true) onRouteBack();
   }
 
+// On file reset tap
   Future<void> onResetFile() async {
     _file = FileModel();
     notifyListeners();
   }
 
+  /// On tap back route to [Main view]
   void onRouteBack() {
     _navigationService.navigateTo(Routes.mainView);
   }

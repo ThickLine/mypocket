@@ -1,6 +1,7 @@
 import 'package:my_pocket/app/app.locator.dart';
 import 'package:my_pocket/app/app.logger.dart';
 import 'package:my_pocket/app/app.router.dart';
+import 'package:my_pocket/core/enum/systemwide_enums.dart';
 import 'package:my_pocket/models/file/file_model.dart';
 import 'package:my_pocket/models/my_pocket_model/my_pocket_model.dart';
 import 'package:my_pocket/services/file.service.dart';
@@ -15,6 +16,7 @@ class ItemViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final _fileService = locator<FileService>();
   final _translationService = locator<TranslationService>();
+  final _snackBarService = locator<SnackbarService>();
 
   FileModel? _file;
 
@@ -28,6 +30,17 @@ class ItemViewModel extends BaseViewModel {
 // Open file natively
   Future<void> openFile() async {
     await OpenFile.open(file!.path);
+  }
+
+  // On item tap
+  Future<void> onTap() async {
+    var t = _translationService.l();
+    _snackBarService.showCustomSnackBar(
+        variant: SnackbarType.BASE,
+        title: t.snackbarInfoItemTapTitle,
+        message: t.snackbarInfoItemTapDescription,
+        duration: const Duration(seconds: 4));
+    notifyListeners();
   }
 
 // delete item localy

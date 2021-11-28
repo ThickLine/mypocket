@@ -36,7 +36,7 @@ class FileHelperService {
   }
 
   String? getPathFromName(String name) {
-    final file = File("${directory!.path}/$name");
+    final file = File("${directory?.path}/$name");
     return file.path;
   }
 

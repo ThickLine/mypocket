@@ -78,6 +78,7 @@ class SettingView extends StatelessWidget {
                             Container(
                               height: 60,
                               child: MainButtonWidget(
+                                width: kScreenWidthPercentage(context) * 0.8,
                                 onPressed: model.deletePocket,
                                 type: ButtonType.ERROR,
                                 text: "Delete Content",

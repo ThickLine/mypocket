@@ -22,8 +22,9 @@ class StartUpViewModel extends BaseViewModel {
   bool get delay => _delay;
 
   Future<void> init() async {
-    await _fileService.initItem();
     await _fileHelperService.getDirectory();
+    await _fileService.initItem();
+
     await _translationService.fetchLocale();
     await onAuth();
 
@@ -50,7 +51,7 @@ class StartUpViewModel extends BaseViewModel {
       return _navigationService.replaceWith(Routes.mainView);
   }
 
-// Timeout should't exceed 3sec
+  /// Here you can set startup delay Shoudn't exceed more than [3 sec]
   Future handleMove() async {
     Duration duration = const Duration(milliseconds: 1500);
     return Timer(duration, init);

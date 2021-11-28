@@ -48,17 +48,21 @@ class UploadView extends StatelessWidget with $UploadView {
                               controller: nameController,
                             ),
                             kVerticalSpaceRegular,
-                            Center(
-                              child: MainCardWidget(
-                                onPressed: model.uploadFile,
-                                child: model.file.path != null
-                                    ? getViewForIndex(model.file.ext!, model)
-                                    : Icon(
-                                        Icons.qr_code_2_outlined,
-                                        size: 80,
-                                        color: kcBlackColor,
-                                      ),
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                MainCardWidget(
+                                  width: kScreenWidthPercentage(context) * 0.8,
+                                  onPressed: model.uploadFile,
+                                  child: model.file.path != null
+                                      ? getViewForIndex(model.file.ext!, model)
+                                      : Icon(
+                                          getIconData(model.icon),
+                                          size: 80,
+                                          color: kcBlackColor,
+                                        ),
+                                ),
+                              ],
                             ),
                             kVerticalSpaceLarge,
                             model.file.path != null
@@ -101,6 +105,20 @@ class UploadView extends StatelessWidget with $UploadView {
         return ImageWidget(
           path: model.file?.path,
         );
+    }
+  }
+
+  IconData getIconData(
+    String type,
+  ) {
+    switch (type) {
+      case "pdf":
+        return Icons.picture_as_pdf_outlined;
+      case "qr":
+        return Icons.qr_code_2_outlined;
+
+      default:
+        return Icons.image_outlined;
     }
   }
 }

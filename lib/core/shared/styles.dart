@@ -11,6 +11,7 @@ const Color kcMediumGreyColor = Color(0xffAAAAAA);
 const Color kcBackgroundColor = Color(0xffF6F5F5);
 const Color kcPlaceholderColor = Color(0xffBFBFBF);
 const Color kcErrorColor = Color(0xffB00020);
+const Color kcInfoColor = Color(0xff5FB3CE);
 const Color kcDarkBackgroundColor = Color.fromRGBO(31, 26, 36, 0.08);
 
 // TextStyle

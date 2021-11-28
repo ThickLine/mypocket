@@ -78,4 +78,10 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get fileUnsuccessfulUploadDescription => 'Iespējams, atļauja tika liegta';
+
+  @override
+  String get snackbarInfoItemTapTitle => 'Vēlējies redzēt failu?';
+
+  @override
+  String get snackbarInfoItemTapDescription => 'Uzspied divreiz, lai redzētu failu pilnā skatā';
 }

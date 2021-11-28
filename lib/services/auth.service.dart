@@ -45,6 +45,7 @@ class AuthService {
     }
   }
 
+// Check if biometric login is available
   Future<bool> onCanCheckBiometrics() async {
     try {
       return _canCheckBiometrics = await auth.canCheckBiometrics;
@@ -54,6 +55,7 @@ class AuthService {
     }
   }
 
+// List available options of biometric login
   Future<void> getAvailableBiometrics() async {
     late List<BiometricType> availableBiometrics;
     try {

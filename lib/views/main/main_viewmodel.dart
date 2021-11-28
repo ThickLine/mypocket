@@ -17,10 +17,12 @@ class MainViewModel extends IndexTrackingViewModel {
   MyPocketModel? get pocket => _fileService.pocket;
   String get date => UtilMixin.getDate();
 
+// On file uploud button tap
   Future onFileUpload() async {
     return _navigationService.navigateTo(Routes.uploadView);
   }
 
+// Route to setting screen
   Future onSettingRoute() async {
     return _navigationService.navigateTo(Routes.settingView);
   }

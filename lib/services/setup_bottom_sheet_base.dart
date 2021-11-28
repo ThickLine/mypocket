@@ -34,7 +34,7 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
       margin: EdgeInsets.all(25),
       padding: EdgeInsets.all(25),
       decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).dialogBackgroundColor,
         borderRadius: BorderRadius.circular(15),
       ),
       child: ListView.builder(

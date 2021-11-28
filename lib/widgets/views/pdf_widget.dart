@@ -16,7 +16,7 @@ class PdfWidget extends StatelessWidget {
         ? AnimatedContainer(
             duration: Duration(milliseconds: 300),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(8.0),
             ),
             height: kScreenHeightPercentage(context) * 0.7,
             child: PdfViewer.openFile(

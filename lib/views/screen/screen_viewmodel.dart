@@ -22,11 +22,13 @@ class ScreenViewModel extends BaseViewModel {
     _file = data;
   }
 
+// Rederict to item screen on image tap
   void onImageTap() {
     _navigationService.navigateTo(Routes.itemView,
         arguments: ItemViewArguments(file: file));
   }
 
+// On file uploud button tap
   Future onFileUpload() async {
     return _navigationService.navigateTo(Routes.uploadView);
   }

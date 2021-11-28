@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_pocket/core/shared/ui_helpers.dart';
 import 'package:my_pocket/models/file/file_model.dart';
 import 'package:my_pocket/views/screen/screen_viewmodel.dart';
 import 'package:my_pocket/widgets/image_wrapper_widget.dart';
@@ -19,6 +20,7 @@ class ScreenView extends StatelessWidget {
           body: Hero(
         tag: "item",
         child: MainCardWidget(
+            width: kScreenWidthPercentage(context) * 0.9,
             onPressed: model.onImageTap,
             child: ImageWrapperWidget(
                 child: getViewForIndex(model.file!.ext!, model))),
@@ -37,6 +39,7 @@ class ScreenView extends StatelessWidget {
 
       default:
         return ImageWidget(
+          fit: BoxFit.fitWidth,
           path: model.file?.path,
           onPressed: model.onFileUpload,
         );

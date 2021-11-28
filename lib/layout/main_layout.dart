@@ -25,8 +25,9 @@ class MainLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: CupertinoNavigationBar(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           leading: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: onTapBack ?? () => Navigator.of(context).pop(),

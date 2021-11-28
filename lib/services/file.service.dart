@@ -42,13 +42,16 @@ class FileService {
 
 // Remove empty items from list and recreate path
   Future<void> getFilesReady() async {
+    // Delete empty entries
     _pocket.files!.removeWhere((FileModel file) => file.ext == null);
+    // Recreate items path
     _pocket.files!.asMap().forEach((int index, FileModel file) {
       pocket.files![index] = pocket.files![index]
           .copyWith(path: _fileHelperService.getPathFromName(file.fileName!));
     });
   }
 
+// Save file localy and db
   Future<bool> saveFile(FileModel data) async {
     try {
       _pocket.files!.add(data);
@@ -65,6 +68,7 @@ class FileService {
     box.put("myFile", pocket);
   }
 
+// Add file logic
   Future<FileModel> addFile() async {
     var t = _translationService.l();
     Directory? directory;
@@ -121,6 +125,7 @@ class FileService {
     }
   }
 
+// Delete item localy and from db
   Future<bool> deleteFile(FileModel file) async {
     try {
       _pocket.files!.removeWhere((FileModel item) => item.uid == file.uid);
@@ -132,6 +137,7 @@ class FileService {
     }
   }
 
+// Delete all db
   Future<bool> deleteHive() async {
     Box<MyPocketModel> box = Boxes.getFile();
     try {

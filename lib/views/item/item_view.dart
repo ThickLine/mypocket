@@ -23,9 +23,13 @@ class ItemView extends StatelessWidget {
         child: Stack(
           children: [
             GestureDetector(
+                onTap: model.onTap,
                 onDoubleTap: model.onFullScreenTap,
-                child:
-                    Container(child: getViewForIndex(model.file!.ext!, model))),
+                child: ListView(
+                  children: [
+                    Container(child: getViewForIndex(model.file!.ext!, model)),
+                  ],
+                )),
             Positioned(
                 bottom: 20.0,
                 left: 0,
@@ -59,6 +63,7 @@ class ItemView extends StatelessWidget {
 
       default:
         return ImageWidget(
+          fit: BoxFit.fitWidth,
           path: model.file?.path,
           onPressed: null,
         );

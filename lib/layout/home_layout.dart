@@ -92,12 +92,6 @@ class HomeLayout extends StatelessWidget {
             height: 360.0,
             padding: EdgeInsets.only(bottom: 25.0),
             child: child,
-            // child: ListView(
-            //   physics: const BouncingScrollPhysics(),
-            //   padding: EdgeInsets.only(left: 40.0, right: 40.0),
-            //   scrollDirection: Axis.horizontal,
-            //   children: [child!, child!],
-            // ),
           ),
         ),
       ],

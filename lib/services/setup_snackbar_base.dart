@@ -9,7 +9,7 @@ void setupSnackBarBase() {
   _snackBarService.registerCustomSnackbarConfig(
     variant: SnackbarType.BASE,
     config: SnackbarConfig(
-      backgroundColor: kcPrimaryColor,
+      backgroundColor: kcInfoColor,
       messageColor: kcWhiteColor,
       borderRadius: 1,
     ),
