@@ -14,8 +14,14 @@ class MainViewModel extends IndexTrackingViewModel {
   final _navigationService = locator<NavigationService>();
   final _fileService = locator<FileService>();
 
+  final int _active = 0;
+
+  int get active => _active;
   MyPocketModel? get pocket => _fileService.pocket;
+  bool get isList => pocket!.files!.isNotEmpty;
   String get date => UtilMixin.getDate();
+
+  void init() {}
 
 // On file uploud button tap
   Future onFileUpload() async {

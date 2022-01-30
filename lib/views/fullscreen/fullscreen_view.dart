@@ -18,7 +18,7 @@ class FullScreenView extends StatelessWidget {
         body: SafeArea(
           child: GestureDetector(
             child: Center(
-              child: Hero(tag: "item", child: getViewForType(file!.ext!)),
+              child: Hero(tag: file!.uid!, child: getViewForType(file!.ext!)),
             ),
             onTap: () => Navigator.pop(context),
           ),

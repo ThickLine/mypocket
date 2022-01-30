@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import 'package:my_pocket/app/app.locator.dart';
 import 'package:my_pocket/app/app.router.dart';
 import 'package:my_pocket/core/managers/core_manager.dart';
 import 'package:my_pocket/locale/app_localizations.g.dart';
-
 import 'package:my_pocket/mixin/lock_phone.mixin.dart';
 import 'package:my_pocket/core/shared/themes.dart' as themes;
 import 'package:my_pocket/models/my_pocket_model/my_pocket_model.dart';

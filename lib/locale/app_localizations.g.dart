@@ -247,7 +247,7 @@ abstract class AppLocalizations {
   /// No description provided for @snackbarInfoItemTapDescription.
   ///
   /// In en, this message translates to:
-  /// **'Double-tap to see file in a full preview'**
+  /// **'Longpress to see file in a full preview'**
   String get snackbarInfoItemTapDescription;
 }
 

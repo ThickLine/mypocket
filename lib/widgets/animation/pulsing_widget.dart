@@ -9,6 +9,7 @@ class PulsingWidget extends StatefulWidget {
   final Widget? child;
   final Duration? duration;
 
+  // ignore: use_key_in_widget_constructors
   const PulsingWidget({@required this.child, this.duration, this.tween})
       : assert(child != null);
   _PulsingWidget createState() => _PulsingWidget();
@@ -26,7 +27,7 @@ class _PulsingWidget extends State<PulsingWidget>
   void initState() {
     super.initState();
     _tween = widget.tween ?? Tween(begin: 0.25, end: 1.0);
-    _duration = widget.duration ?? Duration(milliseconds: 1500);
+    _duration = widget.duration ?? const Duration(milliseconds: 1500);
     _animationController = AnimationController(
       vsync: this,
       duration: _duration,

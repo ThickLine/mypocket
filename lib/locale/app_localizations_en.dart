@@ -83,5 +83,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get snackbarInfoItemTapTitle => 'Did you want to open the file?';
 
   @override
-  String get snackbarInfoItemTapDescription => 'Double-tap to see file in a full preview';
+  String get snackbarInfoItemTapDescription => 'Longpress to see file in a full preview';
 }

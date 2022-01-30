@@ -20,8 +20,8 @@ class ActionButtonWidget extends StatelessWidget {
         size: 45.0,
         color: kcBlackColor,
       ),
-      padding: EdgeInsets.all(5.0),
-      shape: CircleBorder(),
+      padding: const EdgeInsets.all(5.0),
+      shape: const CircleBorder(),
     );
   }
 

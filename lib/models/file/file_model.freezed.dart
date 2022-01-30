@@ -211,16 +211,21 @@ class _$_FileModel implements _FileModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _FileModel &&
-            (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.path, path) || other.path == path) &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName) &&
-            (identical(other.ext, ext) || other.ext == ext));
+            const DeepCollectionEquality().equals(other.uid, uid) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.path, path) &&
+            const DeepCollectionEquality().equals(other.fileName, fileName) &&
+            const DeepCollectionEquality().equals(other.ext, ext));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uid, name, path, fileName, ext);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(uid),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(path),
+      const DeepCollectionEquality().hash(fileName),
+      const DeepCollectionEquality().hash(ext));
 
   @JsonKey(ignore: true)
   @override

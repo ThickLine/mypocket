@@ -5,12 +5,10 @@ class SharedPreferencesService {
 
   static Future<SharedPreferencesService> getInstance(
       {bool enableLogs = false}) async {
-    if (_instance == null) {
-      _instance = SharedPreferencesService._(
-        await SharedPreferences.getInstance(),
-        enableLogs,
-      );
-    }
+    _instance ??= SharedPreferencesService._(
+      await SharedPreferences.getInstance(),
+      enableLogs,
+    );
     return _instance!;
   }
 

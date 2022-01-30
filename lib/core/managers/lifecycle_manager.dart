@@ -9,8 +9,9 @@ import 'package:my_pocket/services/translation.service.dart';
 /// Stop and start long running services
 class LifeCycleManager extends StatefulWidget {
   final Widget? child;
-  LifeCycleManager({Key? key, this.child}) : super(key: key);
+  const LifeCycleManager({Key? key, this.child}) : super(key: key);
 
+  @override
   _LifeCycleManagerState createState() => _LifeCycleManagerState();
 }
 
@@ -43,13 +44,13 @@ class _LifeCycleManagerState extends State<LifeCycleManager>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    servicesToManage.forEach((service) {
+    for (var service in servicesToManage) {
       log.i('App life cycle change to $state');
       if (state == AppLifecycleState.resumed) {
         service.start();
       } else {
         service.stop();
       }
-    });
+    }
   }
 }

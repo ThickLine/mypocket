@@ -8,13 +8,15 @@ class UploadCardWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? text;
 
-  UploadCardWidget(
-      {this.borderColor = Colors.black38,
+  const UploadCardWidget(
+      {Key? key,
+      this.borderColor = Colors.black38,
       this.onPressed,
       this.text,
       this.child = const Icon(Icons.add),
       this.width = 50.0,
-      this.height = 50.0});
+      this.height = 50.0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

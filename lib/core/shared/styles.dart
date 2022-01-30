@@ -15,7 +15,6 @@ const Color kcInfoColor = Color(0xff5FB3CE);
 const Color kcDarkBackgroundColor = Color.fromRGBO(31, 26, 36, 0.08);
 
 // TextStyle
-
 const TextStyle ktsMediumGreyLabelText = TextStyle(
     color: kcMediumGreyColor, fontSize: kLabelTextSize, fontFamily: fontFamily);
 

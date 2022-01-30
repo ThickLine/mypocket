@@ -31,8 +31,8 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(25),
-      padding: EdgeInsets.all(25),
+      margin: const EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
         color: Theme.of(context).dialogBackgroundColor,
         borderRadius: BorderRadius.circular(15),
@@ -40,7 +40,7 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
       child: ListView.builder(
           shrinkWrap: true,
           controller: scrollController,
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           itemCount: AppLocalizations.supportedLocales.length,
           itemBuilder: (context, index) => ListTile(
                 onTap: () => completer!(SheetResponse(

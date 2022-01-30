@@ -10,21 +10,25 @@ import 'package:stacked/stacked.dart';
 
 class ScreenView extends StatelessWidget {
   final FileModel? file;
-  const ScreenView({Key? key, this.file}) : super(key: key);
+
+  const ScreenView({
+    Key? key,
+    this.file,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ScreenViewModel>.reactive(
       onModelReady: (model) => model.init(file),
-      builder: (context, model, child) => Scaffold(
-          body: Hero(
-        tag: "item",
+      builder: (context, model, child) => Hero(
+        tag: model.file!.uid!,
         child: MainCardWidget(
-            width: kScreenWidthPercentage(context) * 0.9,
+            title: model.file!.name,
+            width: kScreenWidthPercentage(context) * 0.8,
             onPressed: model.onImageTap,
             child: ImageWrapperWidget(
                 child: getViewForIndex(model.file!.ext!, model))),
-      )),
+      ),
       viewModelBuilder: () => ScreenViewModel(),
     );
   }
@@ -39,7 +43,7 @@ class ScreenView extends StatelessWidget {
 
       default:
         return ImageWidget(
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.cover,
           path: model.file?.path,
           onPressed: model.onFileUpload,
         );

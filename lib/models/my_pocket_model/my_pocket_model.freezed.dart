@@ -192,14 +192,17 @@ class _$_MyPocketModel implements _MyPocketModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MyPocketModel &&
-            (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            const DeepCollectionEquality().equals(other.uuid, uuid) &&
             const DeepCollectionEquality().equals(other.files, files) &&
-            (identical(other.setting, setting) || other.setting == setting));
+            const DeepCollectionEquality().equals(other.setting, setting));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, uuid, const DeepCollectionEquality().hash(files), setting);
+      runtimeType,
+      const DeepCollectionEquality().hash(uuid),
+      const DeepCollectionEquality().hash(files),
+      const DeepCollectionEquality().hash(setting));
 
   @JsonKey(ignore: true)
   @override

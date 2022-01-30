@@ -132,11 +132,11 @@ class _$_SettingModel implements _SettingModel {
   factory _$_SettingModel.fromJson(Map<String, dynamic> json) =>
       _$$_SettingModelFromJson(json);
 
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   @HiveField(0)
   final bool? dark;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   @HiveField(1)
   final bool? isSecure;
@@ -151,13 +151,15 @@ class _$_SettingModel implements _SettingModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SettingModel &&
-            (identical(other.dark, dark) || other.dark == dark) &&
-            (identical(other.isSecure, isSecure) ||
-                other.isSecure == isSecure));
+            const DeepCollectionEquality().equals(other.dark, dark) &&
+            const DeepCollectionEquality().equals(other.isSecure, isSecure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, dark, isSecure);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(dark),
+      const DeepCollectionEquality().hash(isSecure));
 
   @JsonKey(ignore: true)
   @override

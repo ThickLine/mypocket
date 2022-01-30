@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_pocket/core/enum/systemwide_enums.dart';
+import 'package:my_pocket/core/shared/ui_helpers.dart';
 import 'package:my_pocket/layout/main_layout.dart';
 import 'package:my_pocket/locale/app_localizations.g.dart';
 import 'package:my_pocket/models/file/file_model.dart';
@@ -23,28 +24,30 @@ class ItemView extends StatelessWidget {
         child: Stack(
           children: [
             GestureDetector(
-                onTap: model.onTap,
-                onDoubleTap: model.onFullScreenTap,
-                child: ListView(
-                  children: [
-                    Container(child: getViewForIndex(model.file!.ext!, model)),
-                  ],
-                )),
+              onDoubleTap: model.onTap,
+              onLongPress: model.onFullScreenTap,
+              child: SizedBox(
+                  height: kScreenHeightPercentage(context) * 0.7,
+                  child: getViewForIndex(model.file!.ext!, model)),
+            ),
             Positioned(
                 bottom: 20.0,
                 left: 0,
                 right: 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ActionButtonWidget(
-                        type: ActionButtonType.DELETE,
-                        onPressed: model.onDelete),
-                    ActionButtonWidget(
-                      type: ActionButtonType.OPEN,
-                      onPressed: () => model.openFile(),
-                    ),
-                  ],
+                child: SizedBox(
+                  height: kScreenHeightPercentage(context) * 0.15,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ActionButtonWidget(
+                          type: ActionButtonType.DELETE,
+                          onPressed: model.onDelete),
+                      ActionButtonWidget(
+                        type: ActionButtonType.OPEN,
+                        onPressed: model.openFile,
+                      ),
+                    ],
+                  ),
                 ))
           ],
         ),

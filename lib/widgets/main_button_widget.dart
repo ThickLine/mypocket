@@ -7,47 +7,60 @@ import 'package:my_pocket/core/shared/ui_helpers.dart';
 class MainButtonWidget extends StatelessWidget {
   final ButtonType? type;
   final VoidCallback? onPressed;
+  final bool elevation;
   final String? text;
-  final double width;
+  final double? width;
+  final double? height;
+
   final Widget? child;
 
-  MainButtonWidget(
-      {this.type = ButtonType.PRIMARY,
+  const MainButtonWidget(
+      {Key? key,
+      this.type = ButtonType.PRIMARY,
       this.onPressed,
       this.text,
       this.child,
-      this.width = double.infinity});
+      this.elevation = true,
+      this.width,
+      this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: this.onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: width,
-              height: kScreenHeightPercentage(context) * 0.3,
-              decoration: BoxDecoration(
-                color: getButtonColor(type!),
-                borderRadius: BorderRadius.circular(8.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Theme.of(context).shadowColor,
-                    blurRadius: 1,
-                    offset: Offset(2, 3),
+    return SizedBox(
+      width: width ?? kScreenWidthPercentage(context) * 0.8,
+      height: height ?? kScreenHeightPercentage(context) * 0.4,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: this.onPressed,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: getButtonColor(type!),
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: elevation == true
+                        ? [
+                            BoxShadow(
+                              color: Theme.of(context).shadowColor,
+                              blurRadius: 1,
+                              offset: const Offset(2, 3),
+                            ),
+                          ]
+                        : null,
                   ),
-                ],
+                  child: Center(
+                    child: text != null
+                        ? Text(text!, style: ktsButtonWhiteText)
+                        : child,
+                  ),
+                ),
               ),
-              child: Center(
-                child: text != null
-                    ? Text(text!, style: ktsButtonWhiteText)
-                    : child,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

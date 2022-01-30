@@ -14,7 +14,7 @@ class PdfWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return path != null
         ? AnimatedContainer(
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
             ),

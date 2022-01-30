@@ -29,8 +29,8 @@ class FileService {
 // Init items from db and check for not valid  ones
   Future<void> initItem() async {
     Box<MyPocketModel> box = Boxes.getFile();
-    _pocket = await box.get("myFile") ??
-        MyPocketModel(files: [], setting: SettingModel());
+    _pocket =
+        box.get("myFile") ?? MyPocketModel(files: [], setting: SettingModel());
 
     await getFilesReady();
   }
@@ -64,7 +64,7 @@ class FileService {
 
 // Save to local db
   Future<void> saveToHive() async {
-    Box<MyPocketModel> box = await Boxes.getFile();
+    Box<MyPocketModel> box = Boxes.getFile();
     box.put("myFile", pocket);
   }
 
@@ -74,7 +74,7 @@ class FileService {
     Directory? directory;
     FilePickerResult? uploudfile;
     FileModel? file;
-    Uuid uuid = Uuid();
+    Uuid uuid = const Uuid();
 
     try {
       // Ask for permission and set data

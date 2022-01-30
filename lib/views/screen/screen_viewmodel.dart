@@ -15,7 +15,6 @@ class ScreenViewModel extends BaseViewModel {
   FileModel? _file;
 
   FileModel? get file => _file;
-
   MyPocketModel get item => _fileService.pocket;
 
   void init(FileModel? data) {

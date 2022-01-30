@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_pocket/core/enum/systemwide_enums.dart';
-import 'package:my_pocket/core/shared/styles.dart';
 import 'package:my_pocket/core/shared/ui_helpers.dart';
 import 'package:my_pocket/layout/main_layout.dart';
 import 'package:my_pocket/locale/app_localizations.g.dart';
@@ -9,6 +8,7 @@ import 'package:my_pocket/views/upload/uploud_viewmodel.dart';
 import 'package:my_pocket/widgets/action_button_widget.dart';
 import 'package:my_pocket/widgets/animation/widget_transition.dart';
 import 'package:my_pocket/widgets/main_card_widget.dart';
+import 'package:my_pocket/widgets/upload_card/upload_card_view.dart';
 import 'package:my_pocket/widgets/views/image_widget.dart';
 import 'package:my_pocket/widgets/views/pdf_widget.dart';
 import 'package:stacked/stacked.dart';
@@ -25,8 +25,7 @@ class UploadView extends StatelessWidget with $UploadView {
   Widget build(BuildContext context) {
     return ViewModelBuilder<UploadViewModel>.reactive(
       onModelReady: (model) => {model.init(), listenToFormUpdated(model)},
-      builder: (context, model, child) => Scaffold(
-          body: MainLayout(
+      builder: (context, model, child) => MainLayout(
         onTapBack: model.onRouteBack,
         name: AppLocalizations.of(context)!.uploadViewTitle,
         child: Container(
@@ -35,7 +34,7 @@ class UploadView extends StatelessWidget with $UploadView {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 model.isBusy
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : Expanded(
@@ -51,17 +50,15 @@ class UploadView extends StatelessWidget with $UploadView {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                MainCardWidget(
-                                  width: kScreenWidthPercentage(context) * 0.8,
-                                  onPressed: model.uploadFile,
-                                  child: model.file.path != null
-                                      ? getViewForIndex(model.file.ext!, model)
-                                      : Icon(
-                                          getIconData(model.icon),
-                                          size: 80,
-                                          color: kcBlackColor,
-                                        ),
-                                ),
+                                model.file.path != null
+                                    ? MainCardWidget(
+                                        width: kScreenWidthPercentage(context) *
+                                            0.8,
+                                        onPressed: model.onUploadFile,
+                                        child: getViewForIndex(
+                                            model.file.ext!, model))
+                                    : UploadCardView(
+                                        onPressed: model.onUploadFile)
                               ],
                             ),
                             kVerticalSpaceLarge,
@@ -89,7 +86,7 @@ class UploadView extends StatelessWidget with $UploadView {
                 kVerticalSpaceMedium,
               ],
             )),
-      )),
+      ),
       viewModelBuilder: () => UploadViewModel(),
     );
   }
@@ -105,20 +102,6 @@ class UploadView extends StatelessWidget with $UploadView {
         return ImageWidget(
           path: model.file?.path,
         );
-    }
-  }
-
-  IconData getIconData(
-    String type,
-  ) {
-    switch (type) {
-      case "pdf":
-        return Icons.picture_as_pdf_outlined;
-      case "qr":
-        return Icons.qr_code_2_outlined;
-
-      default:
-        return Icons.image_outlined;
     }
   }
 }

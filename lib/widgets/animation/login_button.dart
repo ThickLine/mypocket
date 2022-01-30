@@ -1,10 +1,12 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:my_pocket/locale/app_localizations.g.dart';
 
 class LoginButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
-  LoginButton({
+  const LoginButton({
     this.onPressed,
   });
 
@@ -22,7 +24,7 @@ class LoginButton extends StatelessWidget {
               color: Colors.blue[300]!,
               blurRadius: 10.0, // has the effect of softening the shadow
               spreadRadius: 1.0, // has the effect of extending the shadow
-              offset: Offset(
+              offset: const Offset(
                 5.0, // horizontal, move right 10
                 5.0, // vertical, move down 10
               ),
@@ -38,13 +40,13 @@ class LoginButton extends StatelessWidget {
             children: <Widget>[
               Text(
                 AppLocalizations.of(context)!.loginTitle,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.lightBlueAccent,
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward,
                 color: Colors.lightBlueAccent,
               ),

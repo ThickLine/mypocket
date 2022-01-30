@@ -16,7 +16,7 @@ class ImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return path != null
         ? AnimatedContainer(
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               image: DecorationImage(
@@ -24,7 +24,7 @@ class ImageWidget extends StatelessWidget {
                 image: FileImage(File(path ?? "")),
               ),
             ),
-            height: kScreenHeightPercentage(context) * 0.7,
+            height: kScreenHeightPercentage(context) * 0.8,
           )
         : MainCardWidget(
             onPressed: onPressed,

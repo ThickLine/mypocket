@@ -83,5 +83,5 @@ class AppLocalizationsLv extends AppLocalizations {
   String get snackbarInfoItemTapTitle => 'Vēlējies redzēt failu?';
 
   @override
-  String get snackbarInfoItemTapDescription => 'Uzspied divreiz, lai redzētu failu pilnā skatā';
+  String get snackbarInfoItemTapDescription => 'Uzspied un turi, lai redzētu failu pilnā skatā';
 }

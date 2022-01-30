@@ -11,7 +11,7 @@ class AuthService {
   final _translationService = locator<TranslationService>();
 
   List<BiometricType>? _availableBiometrics;
-  String _authorized = 'Not Authorized';
+  final String _authorized = 'Not Authorized';
   bool _didAuthenticate = false;
   bool _isAuthenticating = false;
   bool? _canCheckBiometrics;

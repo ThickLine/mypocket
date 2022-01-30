@@ -24,38 +24,43 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: CupertinoNavigationBar(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: SafeArea(
+        child: Scaffold(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          leading: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: onTapBack ?? () => Navigator.of(context).pop(),
-            child: Row(
-              children: <Widget>[
-                Icon(CupertinoIcons.left_chevron,
-                    color: CupertinoColors.activeBlue),
-                Text(
-                  AppLocalizations.of(context)!.back,
-                  style: TextStyle(
-                    color: CupertinoColors.activeBlue,
-                  ),
+          appBar: CupertinoNavigationBar(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              leading: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: onTapBack ?? () => Navigator.of(context).pop(),
+                child: Row(
+                  children: <Widget>[
+                    const Icon(CupertinoIcons.left_chevron,
+                        color: CupertinoColors.activeBlue),
+                    Text(
+                      AppLocalizations.of(context)!.back,
+                      style: const TextStyle(
+                        color: CupertinoColors.activeBlue,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
+              middle: Text(
+                name!,
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.headline2!.color),
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: trailing),
+          body: AnimatedContainer(
+            padding: kPagePadding,
+            duration: kAnimationDuration,
+            child: Column(
+              children: [Expanded(child: child!)],
             ),
           ),
-          middle: Text(
-            name!,
-            style:
-                TextStyle(color: Theme.of(context).textTheme.headline2!.color),
-            overflow: TextOverflow.ellipsis,
-          ),
-          trailing: trailing),
-      body: AnimatedContainer(
-        padding: kPagePadding,
-        duration: kAnimationDuration,
-        child: Column(
-          children: [Expanded(child: Hero(tag: "item", child: child!))],
         ),
       ),
     );

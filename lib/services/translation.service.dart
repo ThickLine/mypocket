@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:intl/intl.dart';
@@ -20,14 +21,18 @@ class TranslationService extends StoppableService {
   @override
   void start() {
     super.start();
-    print('LocationService Started $appLocal');
+    if (kDebugMode) {
+      print('LocationService Started $appLocal');
+    }
   }
 
   @override
   void stop() {
     super.stop();
 
-    print('LocationService Stopped $appLocal');
+    if (kDebugMode) {
+      print('LocationService Stopped $appLocal');
+    }
   }
 
   Future<void> fetchLocale() async {
@@ -49,18 +54,18 @@ class TranslationService extends StoppableService {
     }
     switch (type) {
       case "en":
-        _appLocale = Locale("en");
+        _appLocale = const Locale("en");
         await prefs.saveData(key: 'language_code', value: 'en');
         await prefs.saveData(key: 'countryCode', value: 'US');
         break;
       case "lv":
-        _appLocale = Locale("lv");
+        _appLocale = const Locale("lv");
         await prefs.saveData(key: 'language_code', value: 'lv');
         await prefs.saveData(key: 'countryCode', value: 'LV');
         break;
 
       default:
-        _appLocale = Locale("en");
+        _appLocale = const Locale("en");
         await prefs.saveData(key: 'language_code', value: 'en');
         await prefs.saveData(key: 'countryCode', value: 'US');
     }
