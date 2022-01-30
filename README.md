@@ -7,9 +7,9 @@ Can be used to store screenshots[loyalty cards, QR codes etc.] or pdf documents 
 
 ------------
 #### Ussing: 
-Architecture MVVM - Stacked
-Storage - Hive
-Security- Local Auth
+- Architecture MVVM - Stacked
+- Storage - Hive
+- Security- Local Auth
 
 ------------
 
