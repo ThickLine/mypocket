@@ -20,15 +20,12 @@ class ScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ScreenViewModel>.reactive(
       onModelReady: (model) => model.init(file),
-      builder: (context, model, child) => Hero(
-        tag: model.file!.uid!,
-        child: MainCardWidget(
-            title: model.file!.name,
-            width: kScreenWidthPercentage(context) * 0.8,
-            onPressed: model.onImageTap,
-            child: ImageWrapperWidget(
-                child: getViewForIndex(model.file!.ext!, model))),
-      ),
+      builder: (context, model, child) => MainCardWidget(
+          title: model.file!.name,
+          width: kScreenWidthPercentage(context) * 0.8,
+          onPressed: model.onImageTap,
+          child: ImageWrapperWidget(
+              child: getViewForIndex(model.file!.ext!, model))),
       viewModelBuilder: () => ScreenViewModel(),
     );
   }
