@@ -1,16 +1,34 @@
-# my_pocket
+# **My Pocket**
+Flutter project for storing image and pdf files.
+Can be used to store screenshots[loyalty cards, QR codes etc.] or pdf documents for easy access.
 
-A new Flutter project.
 
-## Getting Started
+<img src="https://user-images.githubusercontent.com/31936990/151708388-e57d7ad4-f1f2-465e-ba71-68e6b1ae8110.gif"  width="400" height="800">
 
-This project is a starting point for a Flutter application.
+------------
+#### Ussing: 
+Architecture MVVM - Stacked
+Storage - Hive
+Security- Local Auth
 
-A few resources to get you started if this is your first Flutter project:
+------------
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#### Features: 
+- Storage
+- Security
+- Light/Dark theme
+- Localization
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+------------
+
+
+
+### Run
+
+`flutter pub run`
+
+
+
+### Generate
+`flutter packages pub run build_runner build --delete-conflicting-outputs`
